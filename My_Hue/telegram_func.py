@@ -16,7 +16,7 @@ def set_webhook(token):
     # Webhook
     url = "https://api.telegram.org/"+token+"/setWebhook"
     header = {'content-Type': 'application/json'}
-    app_heroku = {"url":'https://rodrigozs-heroku-app.herokuapp.com/api'}
+    app_heroku = {"url":'https://hue-heroku-app.herokuapp.com/api'}
     r = requests.post(url, headers=header, data=json.dumps(app_heroku))
     return r
 
@@ -30,4 +30,4 @@ def del_webhook(token):
 if __name__ == '__main__':
     # Webhook
     wh = set_webhook(token)
-    print(r.json())
+    print(wh.json())
