@@ -28,7 +28,7 @@ def api_get():
         light_num = resto_mensaje.strip(' ')
 
         if light_num.isdigit() or light_num == 'all':
-            info = hue_get(light_num)
+            info = hue.get_light(light_num)
 
             # Obtenemos datos
             lights = info.keys()
