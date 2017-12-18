@@ -12,13 +12,13 @@ def print_pretty(jsonstring, indent=4, sort_keys=False):
 def get_light(light_name):
     if light_name == 'all':
         url_get = url + '/lights'
-        r = requests.get(url_get)
-        return r.json()
+        req = requests.get(url_get)
+        return req.json()
 
     else:
         url_get = url + '/lights' + '/' + light_name
-        r = requests.get(url_get)
-        return r.json()
+        req = requests.get(url_get)
+        return req.json()
 
 
 def turn_on(light_name):
@@ -27,9 +27,20 @@ def turn_on(light_name):
 
     else:
         url_turn_on = url + '/lights' + '/' + light_name + '/' + 'state'
-        form = {"on":"true", "sat":254, "bri":254,"hue":10000}
-        r = requests.put(url_turn_on, headers=header, data = json.dumps(form))
-        return r.json()
+        form = {"on":True}
+        req = requests.put(url_turn_on, headers=header, data = json.dumps(form))
+        return req.json()
+
+
+def turn_off(light_name):
+    if light_name == 'all':
+        return
+
+    else:
+        url_turn_on = url + '/lights' + '/' + light_name + '/' + 'state'
+        form = {"on":False}
+        req = requests.put(url_turn_on, headers=header, data = json.dumps(form))
+        return req.json()
 
 
 if __name__ == '__main__':
