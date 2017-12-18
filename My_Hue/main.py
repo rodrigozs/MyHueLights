@@ -44,7 +44,7 @@ def api_get():
             return "!"
 
         else:
-            text = '''Lo siento, pero la ampolleta {} no existe.
+            text = '''Lo siento, pero la ampolleta {0} no existe.
                     'Intenta de nuevo'''.format(light_num)
             telegram.send_msg(chat_id, text)
             return "!"

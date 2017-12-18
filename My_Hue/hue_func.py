@@ -23,7 +23,7 @@ def get_light(light_name):
 
 def turn_on(light_name):
     if light_name == 'all':
-        pass
+        return
 
     else:
         url_turn_on = url + '/lights' + '/' + light_name + '/' + 'state'
@@ -33,5 +33,5 @@ def turn_on(light_name):
 
 
 if __name__ == '__main__':
-    r = turn_on('7')
-    print_pretty(r.json())
+    req = turn_on('7')
+    print_pretty(req)
