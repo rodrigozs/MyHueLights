@@ -34,7 +34,7 @@ def api_get():
             lights = info.keys()
             for light in lights:
                 name = info[light]['name']
-                state = 'ON' if info[light]['state']['on'] == 'true' else 'OFF'
+                state = 'ON' if info[light]['state']['on'] == True else 'OFF'
                 text = '''
                 [#{0} - {1}: {2}]
 
@@ -49,8 +49,24 @@ def api_get():
             telegram.send_msg(chat_id, text)
             return "!"
 
-    elif comando == '/post':
-        pass
+    elif comando == '/turn_on':
+        light_num = resto_mensaje.strip(' ')
+
+        if light_num.isdigit():
+            hue.turn_on(light_num)
+            info = hue.get_light(light_num)
+
+            # Obtenemos datos
+            name = info[light]['name']
+            state = 'ON' if info[light]['state']['on'] == 'true' else 'OFF'
+            text = '''
+            [#{0} - {1}: {2}]
+
+            '''.format(light, name, state)
+
+            telegram.send_msg(chat_id, text)
+            return "!"
+
 
     elif comando == '/label':
         pass
