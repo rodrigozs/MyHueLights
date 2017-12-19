@@ -23,16 +23,20 @@ def api_get():
     comando = mensaje[:ind_comando]
     resto_mensaje = mensaje[ind_comando + 1 :]
 
+    print('comando:{} , resto_mensaje: {}'.format(comando, resto_mensaje))
+
     # comandos de Telegram
     if comando == '/info':
+        print('comando == info: True')
         light_num = resto_mensaje.strip(' ')
+        print('light_num: {}'.format(light_num))
 
         if light_num.isdigit():
             info = hue.get_light(light_num)
             name = info['name']
             state = 'ON' if info['state']['on'] == True else 'OFF'
             text = '''[#{0} - {1}: is {2}] \n\n'''.format(light_num, name, state)
-
+            print('text: {}'.format(text))
             telegram.send_msg(chat_id, text)
             return "!"
 
