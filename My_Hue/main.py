@@ -33,7 +33,7 @@ def api_get():
             #state = 'ON' if info[light]['state']['on'] == True else 'OFF'
             text = '''[#{0} - {1}] \n\n'''.format(light_num, name)
 
-            telegram.send_msg(chat_id, text)
+            telegram.send_msg(chat_id, info)
             return "!"
 
         else:
