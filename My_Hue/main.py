@@ -37,6 +37,7 @@ def api_get():
             state = 'ON' if info['state']['on'] == True else 'OFF'
             text = '''[#{0} - {1}: is {2}] \n\n'''.format(light_num, name, state)
             print('text: {}'.format(text))
+            
             telegram.send_msg(chat_id, text)
             return "!"
 
@@ -50,7 +51,7 @@ def api_get():
             telegram.send_msg(chat_id, text)
             return "!"
 
-    elif comando == '/turn_on':
+    elif comando == '/on':
         light_num = str(resto_mensaje.strip(' '))
 
         if light_num.isdigit():
