@@ -53,10 +53,7 @@ def api_get():
             # Obtenemos datos
             name = info[light]['name']
             state = 'ON' if info[light]['state']['on'] == 'true' else 'OFF'
-            text = '''
-            [#{0} - {1}: {2}]
-
-            '''.format(light, name, state)
+            text = '''[#{0} - {1}: {2}] \n\n'''.format(light, name, state)
 
             telegram.send_msg(chat_id, text)
             return "!"
