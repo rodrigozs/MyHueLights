@@ -44,5 +44,5 @@ def turn_off(light_name):
 
 
 if __name__ == '__main__':
-    req = turn_on('7')
+    req = 'On' if get_light('7')['state']['on'] == True else 'False'
     print_pretty(req)

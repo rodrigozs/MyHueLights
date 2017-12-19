@@ -29,12 +29,16 @@ def api_get():
 
         if light_num.isdigit():
             info = hue.get_light(light_num)
-            name = info[light_num]['name']
-            #state = 'ON' if info[light]['state']['on'] == True else 'OFF'
-            text = '''[#{0} - {1}] \n\n'''.format(light_num, name)
+            name = info['name']
+            state = 'ON' if info['state']['on'] == True else 'OFF'
+            text = '''[#{0} - {1}: is {2}] \n\n'''.format(light_num, name, state)
 
-            telegram.send_msg(chat_id, info)
+            telegram.send_msg(chat_id, text)
             return "!"
+
+        elif light_num == 'all':
+            pass
+            return '!'
 
         else:
             text = '''Lo siento, pero la ampolleta {0} no existe.
@@ -46,13 +50,14 @@ def api_get():
         light_num = resto_mensaje.strip(' ')
 
         if light_num.isdigit():
+            # turn on the light
             hue.turn_on(light_num)
-            info = hue.get_light(light_num)
 
-            # Obtenemos datos
-            name = info[light_num]['name']
-            #state = 'ON' if info[light]['state']['on'] == 'true' else 'OFF'
-            text = '''[#{0} - {1}] \n\n'''.format(light_num, name)
+            # show the
+            info = hue.get_light(light_num)
+            name = info['name']
+            state = 'ON' if info['state']['on'] == True else 'OFF'
+            text = '''[#{0} - {1}: now is {2}] \n\n'''.format(light_num, name, state)
 
             telegram.send_msg(chat_id, text)
             return "!"
