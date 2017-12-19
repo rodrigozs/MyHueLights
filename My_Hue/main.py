@@ -29,9 +29,9 @@ def api_get():
 
         if light_num.isdigit():
             info = hue.get_light(light_num)
-            name = info[light]['name']
-            state = 'ON' if info[light]['state']['on'] == True else 'OFF'
-            text = '''[#{0} - {1}: {2}] \n\n'''.format(light, name, state)
+            name = info[light_num]['name']
+            #state = 'ON' if info[light]['state']['on'] == True else 'OFF'
+            text = '''[#{0} - {1}] \n\n'''.format(light_num, name)
 
             telegram.send_msg(chat_id, text)
             return "!"
@@ -50,9 +50,9 @@ def api_get():
             info = hue.get_light(light_num)
 
             # Obtenemos datos
-            name = info[light]['name']
-            state = 'ON' if info[light]['state']['on'] == 'true' else 'OFF'
-            text = '''[#{0} - {1}: {2}] \n\n'''.format(light, name, state)
+            name = info[light_num]['name']
+            #state = 'ON' if info[light]['state']['on'] == 'true' else 'OFF'
+            text = '''[#{0} - {1}] \n\n'''.format(light_num, name)
 
             telegram.send_msg(chat_id, text)
             return "!"
