@@ -28,8 +28,8 @@ def api_get():
     # comandos de Telegram
     if comando == '/info':
         print('comando == info: True')
-        light_num = resto_mensaje.strip(' ')
-        print('light_num: {}'.format(light_num))
+        light_num = str(resto_mensaje.strip(' '))
+        print('light_num: {} is number? {}'.format(light_num,light_num.isdigit()))
 
         if light_num.isdigit():
             info = hue.get_light(light_num)
@@ -51,7 +51,7 @@ def api_get():
             return "!"
 
     elif comando == '/turn_on':
-        light_num = resto_mensaje.strip(' ')
+        light_num = str(resto_mensaje.strip(' '))
 
         if light_num.isdigit():
             # turn on the light
