@@ -27,25 +27,19 @@ def api_get():
     if comando == '/info':
         light_num = resto_mensaje.strip(' ')
 
-        if light_num.isdigit() or light_num == 'all':
+        if light_num.isdigit():
             info = hue.get_light(light_num)
+            name = info[light]['name']
+            state = 'ON' if info[light]['state']['on'] == True else 'OFF'
+            text = '''[#{0} - {1}: {2}] \n\n'''.format(light, name, state)
 
-            # Obtenemos datos
-            lights = info.keys()
-            for light in lights:
-                name = info[light]['name']
-                state = 'ON' if info[light]['state']['on'] == True else 'OFF'
-                text = '''
-                [#{0} - {1}: {2}]
-
-                '''.format(light, name, state)
-
-                telegram.send_msg(chat_id, text)
+            telegram.send_msg(chat_id, text)
             return "!"
 
         else:
-            text = '''Lo siento, pero la ampolleta {0} no existe.
-                    'Intenta de nuevo'''.format(light_num)
+            text =
+            '''Lo siento, pero la ampolleta {0} no existe.
+            Intenta de nuevo'''.format(light_num)
             telegram.send_msg(chat_id, text)
             return "!"
 
